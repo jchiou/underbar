@@ -193,8 +193,8 @@
     // TIP: Try re-using reduce() here.
     if (iterator === undefined) {
       iterator = function(x) { 
-        return x 
-      };
+        return x;
+      }
     } else if (collection.length === 0 || collection.length === undefined) {
       return true;
     } 
@@ -207,6 +207,22 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    if (iterator === undefined) {
+      iterator = function(x) {
+        return x;
+      }
+        if (collection.length === 0 || collection.length === undefined) {
+          return false;
+        }
+    } else if (collection.length === 0 || collection.length === undefined) {
+      return false;
+    }
+    return _.reduce(collection, function(outcome, element) {
+      if (iterator(element)) {
+        return true;
+      } else 
+      return outcome;
+    }, false)
   };
 
 
