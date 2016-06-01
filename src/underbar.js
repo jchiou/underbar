@@ -245,11 +245,34 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
+      // must iterate over passed in objects to set their keys/values to the same key/values in the first object passed in
+      var args = []
+      // iterate over arguments by refering to them as an array
+      for (var i = 0; i < arguments.length; i++) {
+        args[i] = arguments[i];
+        for (var key in args[i]) {
+          obj[key] = args[i][key]
+        }
+      }
+      return obj;
   };
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    // must iterate over objects and check if their keys/values are unique - if they are, 
+    // they will be set as new keys/values of the first obj
+    // the arguments must be transferred to array
+    var args = [];
+    for (var i = 0; i < arguments.length; i++) {
+      args[i] = arguments[i];
+      for (var key in args[i]) {
+        if (!obj.hasOwnProperty(key)) {
+          obj[key] = args[i][key]
+        }
+      }
+    }
+    return obj;
   };
 
 
