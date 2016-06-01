@@ -102,6 +102,15 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
+    // push unique elements into acc
+    // if it already exists in the acc, does not push
+    var acc = [];
+    _.each(array, function(element) {
+      if (!acc.includes(element)) {
+        acc.push(element);
+      }
+    })
+    return acc;
   };
 
 
